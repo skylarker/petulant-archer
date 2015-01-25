@@ -1,22 +1,35 @@
 package com.hansya.gsondese;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
 public class Location {
 
 	private String location;
 
+	@Expose
 	private String city;
 
+	@Expose
 	private String state;
 
+	@Expose
 	private String country;
 
 	private Gson gson;
 
 	public Location(String location) {
 		this.location = location;
-		gson = new Gson();
+		// gson = new Gson();
+		// gson = new GsonBuilder().setPrettyPrinting().create();
+		gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
+				.create();
+		// .create();
+
 	}
 
 	protected String getLocation() {
@@ -66,5 +79,15 @@ public class Location {
 
 	protected String convertToJSON(Location location) {
 		return gson.toJson(location);
+	}
+
+	protected void writeJson(String jsonString) {
+		try {
+			FileWriter fileWriter = new FileWriter("out.json");
+			fileWriter.write(jsonString);
+			fileWriter.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 }
