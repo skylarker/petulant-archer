@@ -6,18 +6,22 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Location {
 
 	private String location;
 
 	@Expose
+	@SerializedName("c")
 	private String city;
 
 	@Expose
+	@SerializedName("s")
 	private String state;
 
 	@Expose
+	@SerializedName("co")
 	private String country;
 
 	private Gson gson;
