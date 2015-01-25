@@ -9,6 +9,9 @@ public class Main {
 		String jsonString = location.convertToJSON(location);
 		System.out.println(jsonString);
 		location.writeJson(jsonString);
+
+		JsonToMap jsonToMap = new JsonToMap();
+		jsonToMap.readJsonFile();
 	}
 
 }
